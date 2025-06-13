@@ -140,6 +140,43 @@ app.use('/api/v1/assets', assetRoutes);
 app.use('/api/v1/portfolio', portfolioRoutes);
 app.use('/api/v1/transactions', transactionRoutes);
 
+// ROTA DE SIMULAÇÃO PESADA PARA DEMONSTRAÇÃO DE PERFORMANCE
+/**
+ * @swagger
+ * /api/v1/simulacao-pesada:
+ *   get:
+ *     summary: Simulação pesada de investimentos (carga de CPU)
+ *     description: Executa um cálculo intensivo para simular gargalo de performance no monolito.
+ *     tags:
+ *       - Demo
+ *     responses:
+ *       200:
+ *         description: Resultado da simulação pesada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 resultado:
+ *                   type: number
+ *                 tempo_ms:
+ *                   type: number
+ */
+app.get('/api/v1/simulacao-pesada', async (req, res) => {
+  const inicio = Date.now();
+  // Simulação de cálculo pesado: juros compostos em lote
+  let resultado = 0;
+  for (let i = 0; i < 1_000_000; i++) {
+    // Simula 1 milhão de cálculos de investimento
+    const principal = 1000 + (i % 1000);
+    const taxa = 0.07 + ((i % 10) * 0.001);
+    const anos = 20 + (i % 5);
+    resultado += principal * Math.pow(1 + taxa, anos);
+  }
+  const tempo_ms = Date.now() - inicio;
+  res.json({ resultado, tempo_ms });
+});
+
 // Middleware de tratamento de erros
 const { errorHandler } = require('./middleware/errorHandler');
 app.use(errorHandler);
