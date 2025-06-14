@@ -247,6 +247,7 @@
         </div>
     </div>
 
+    <script src="/js/format.js"></script>
     <script>
         // Dados simulados das posições
         const portfolioPositions = [
@@ -367,7 +368,7 @@
                             beginAtZero: false,
                             ticks: {
                                 callback: function(value) {
-                                    return 'R$ ' + value.toLocaleString('pt-BR');
+                                    return formatCurrency(value);
                                 }
                             }
                         }
@@ -422,7 +423,7 @@
                 const resultClass = result >= 0 ? 'text-success' : 'text-danger';
                 const resultIcon = result >= 0 ? 'fa-arrow-up' : 'fa-arrow-down';
 
-                return '<tr><td><strong>' + position.symbol + '</strong><br><small class="text-muted">' + position.name + '</small></td><td>' + position.quantity + '</td><td>R$ ' + position.avgPrice.toFixed(2) + '</td><td>R$ ' + position.currentPrice.toFixed(2) + '</td><td>R$ ' + position.invested.toFixed(2) + '</td><td>R$ ' + position.currentValue.toFixed(2) + '</td><td class="' + resultClass + '"><i class="fas ' + resultIcon + ' me-1"></i>R$ ' + result.toFixed(2) + '<br><small>(' + resultPercent.toFixed(1) + '%)</small></td><td>' + position.allocation.toFixed(1) + '%</td><td><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-primary" onclick="buyMore(\'' + position.symbol + '\')"><i class="fas fa-plus"></i></button><button class="btn btn-sm btn-outline-danger" onclick="sellPosition(\'' + position.symbol + '\')"><i class="fas fa-minus"></i></button></div></td></tr>';
+                return '<tr><td><strong>' + position.symbol + '</strong><br><small class="text-muted">' + position.name + '</small></td><td>' + position.quantity + '</td><td>' + formatCurrency(position.avgPrice) + '</td><td>' + formatCurrency(position.currentPrice) + '</td><td>' + formatCurrency(position.invested) + '</td><td>' + formatCurrency(position.currentValue) + '</td><td class="' + resultClass + '"><i class="fas ' + resultIcon + ' me-1"></i>' + formatCurrency(result) + '<br><small>(' + resultPercent.toFixed(1) + '%)</small></td><td>' + position.allocation.toFixed(1) + '%</td><td><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-primary" onclick="buyMore(\'' + position.symbol + '\')"><i class="fas fa-plus"></i></button><button class="btn btn-sm btn-outline-danger" onclick="sellPosition(\'' + position.symbol + '\')"><i class="fas fa-minus"></i></button></div></td></tr>';
             }).join('');
         }
 
@@ -439,7 +440,7 @@
                 const resultClass = result >= 0 ? 'text-success' : 'text-danger';
                 const resultIcon = result >= 0 ? 'fa-arrow-up' : 'fa-arrow-down';
 
-                return '<tr><td><strong>' + position.symbol + '</strong><br><small class="text-muted">' + position.name + '</small></td><td>' + position.quantity + '</td><td>R$ ' + position.avgPrice.toFixed(2) + '</td><td>R$ ' + position.currentPrice.toFixed(2) + '</td><td>R$ ' + position.invested.toFixed(2) + '</td><td>R$ ' + position.currentValue.toFixed(2) + '</td><td class="' + resultClass + '"><i class="fas ' + resultIcon + ' me-1"></i>R$ ' + result.toFixed(2) + '<br><small>(' + resultPercent.toFixed(1) + '%)</small></td><td>' + position.allocation.toFixed(1) + '%</td><td><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-primary" onclick="buyMore(\'' + position.symbol + '\')"><i class="fas fa-plus"></i></button><button class="btn btn-sm btn-outline-danger" onclick="sellPosition(\'' + position.symbol + '\')"><i class="fas fa-minus"></i></button></div></td></tr>';
+                return '<tr><td><strong>' + position.symbol + '</strong><br><small class="text-muted">' + position.name + '</small></td><td>' + position.quantity + '</td><td>' + formatCurrency(position.avgPrice) + '</td><td>' + formatCurrency(position.currentPrice) + '</td><td>' + formatCurrency(position.invested) + '</td><td>' + formatCurrency(position.currentValue) + '</td><td class="' + resultClass + '"><i class="fas ' + resultIcon + ' me-1"></i>' + formatCurrency(result) + '<br><small>(' + resultPercent.toFixed(1) + '%)</small></td><td>' + position.allocation.toFixed(1) + '%</td><td><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-primary" onclick="buyMore(\'' + position.symbol + '\')"><i class="fas fa-plus"></i></button><button class="btn btn-sm btn-outline-danger" onclick="sellPosition(\'' + position.symbol + '\')"><i class="fas fa-minus"></i></button></div></td></tr>';
             }).join('');
         }
 

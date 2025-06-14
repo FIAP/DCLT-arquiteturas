@@ -23,7 +23,7 @@ router.get('/', authenticateToken, asyncHandler(async (req, res) => {
   res.json({
     success: true,
     data: {
-      portfolio: portfolio || null
+      portfolio: portfolio ? portfolio.getFormattedData() : null
     }
   });
 }));

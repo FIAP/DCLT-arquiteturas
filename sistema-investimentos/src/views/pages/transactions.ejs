@@ -282,15 +282,15 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <small class="text-muted">Valor dos Ativos:</small>
-                                        <div id="summaryAssetValue">R$ 0,00</div>
+                                        <div id="summaryAssetValue"></div>
                                     </div>
                                     <div class="col-6">
                                         <small class="text-muted">Taxas:</small>
-                                        <div id="summaryFees">R$ 0,00</div>
+                                        <div id="summaryFees"></div>
                                     </div>
                                     <div class="col-12 mt-2">
                                         <strong class="text-muted">Total Final:</strong>
-                                        <div class="h5 mb-0" id="summaryTotal">R$ 0,00</div>
+                                        <div class="h5 mb-0" id="summaryTotal"></div>
                                     </div>
                                 </div>
                             </div>
@@ -310,6 +310,7 @@
         </div>
     </div>
 
+    <script src="/js/format.js"></script>
     <script>
         // Dados simulados de transações
         const mockTransactions = [
@@ -383,6 +384,9 @@
             loadTransactions();
             setupEventListeners();
             setDefaultDateTime();
+            document.getElementById('summaryAssetValue').textContent = formatCurrency(0);
+            document.getElementById('summaryFees').textContent = formatCurrency(0);
+            document.getElementById('summaryTotal').textContent = formatCurrency(0);
         });
 
         function setupEventListeners() {
@@ -430,7 +434,7 @@
                 const statusClass = transaction.status === 'completed' ? 'bg-success' : 'bg-warning';
                 const statusLabel = transaction.status === 'completed' ? 'Concluída' : 'Pendente';
 
-                return '<tr><td>' + formatDateTime(transaction.date) + '</td><td><span class="' + typeClass + '"><i class="fas ' + typeIcon + ' me-1"></i>' + typeLabel + '</span></td><td><strong>' + transaction.symbol + '</strong><br><small class="text-muted">' + transaction.name + '</small></td><td>' + transaction.quantity + '</td><td>R$ ' + transaction.price.toFixed(2) + '</td><td>R$ ' + transaction.total.toFixed(2) + '</td><td><span class="badge ' + statusClass + '">' + statusLabel + '</span></td><td><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-info" onclick="viewTransaction(' + transaction.id + ')" title="Ver detalhes"><i class="fas fa-eye"></i></button><button class="btn btn-sm btn-outline-primary" onclick="duplicateTransaction(' + transaction.id + ')" title="Duplicar"><i class="fas fa-copy"></i></button></div></td></tr>';
+                return '<tr><td>' + formatDateTime(transaction.date) + '</td><td><span class="' + typeClass + '"><i class="fas ' + typeIcon + ' me-1"></i>' + typeLabel + '</span></td><td><strong>' + transaction.symbol + '</strong><br><small class="text-muted">' + transaction.name + '</small></td><td>' + transaction.quantity + '</td><td>' + formatCurrency(transaction.price) + '</td><td>' + formatCurrency(transaction.total) + '</td><td><span class="badge ' + statusClass + '">' + statusLabel + '</span></td><td><div class="btn-group" role="group"><button class="btn btn-sm btn-outline-info" onclick="viewTransaction(' + transaction.id + ')" title="Ver detalhes"><i class="fas fa-eye"></i></button><button class="btn btn-sm btn-outline-primary" onclick="duplicateTransaction(' + transaction.id + ')" title="Duplicar"><i class="fas fa-copy"></i></button></div></td></tr>';
             }).join('');
         }
 
@@ -467,10 +471,10 @@
             const assetValue = quantity * price;
             const total = assetValue + fees;
             
-            document.getElementById('totalValue').value = 'R$ ' + assetValue.toFixed(2);
-            document.getElementById('summaryAssetValue').textContent = 'R$ ' + assetValue.toFixed(2);
-            document.getElementById('summaryFees').textContent = 'R$ ' + fees.toFixed(2);
-            document.getElementById('summaryTotal').textContent = 'R$ ' + total.toFixed(2);
+            document.getElementById('totalValue').value = formatCurrency(assetValue);
+            document.getElementById('summaryAssetValue').textContent = formatCurrency(assetValue);
+            document.getElementById('summaryFees').textContent = formatCurrency(fees);
+            document.getElementById('summaryTotal').textContent = formatCurrency(total);
         }
 
         function saveTransaction() {

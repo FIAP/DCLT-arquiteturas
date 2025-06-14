@@ -51,6 +51,8 @@
  *           format: date-time
  */
 
+const { formatCurrency } = require('../../format');
+
 module.exports = (sequelize, DataTypes) => {
   const PortfolioAsset = sequelize.define('portfolio_assets', {
     id: {
@@ -227,13 +229,13 @@ module.exports = (sequelize, DataTypes) => {
         symbol: this.asset.symbol,
         name: this.asset.name,
         type: this.asset.type,
-        current_price: parseFloat(this.asset.current_price)
+        current_price: formatCurrency(this.asset.current_price)
       } : null,
       quantity: parseFloat(this.quantity),
-      average_price: parseFloat(this.average_price),
-      total_invested: parseFloat(this.total_invested),
-      current_value: parseFloat(this.current_value),
-      profit_loss: parseFloat(this.profit_loss),
+      average_price: formatCurrency(this.average_price),
+      total_invested: formatCurrency(this.total_invested),
+      current_value: formatCurrency(this.current_value),
+      profit_loss: formatCurrency(this.profit_loss),
       profit_loss_percentage: parseFloat(this.profit_loss_percentage),
       portfolio_percentage: 0 // será calculado no frontend
     };

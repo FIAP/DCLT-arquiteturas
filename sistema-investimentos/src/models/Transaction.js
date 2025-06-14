@@ -55,6 +55,8 @@
  *           format: date-time
  */
 
+const { formatCurrency } = require('../../format');
+
 module.exports = (sequelize, DataTypes) => {
   const Transaction = sequelize.define('transactions', {
     id: {
@@ -209,10 +211,10 @@ module.exports = (sequelize, DataTypes) => {
       asset_symbol: this.asset ? this.asset.symbol : null,
       asset_name: this.asset ? this.asset.name : null,
       quantity: parseFloat(this.quantity),
-      price: parseFloat(this.price),
-      total_amount: parseFloat(this.total_amount),
-      fees: parseFloat(this.fees),
-      total_cost: this.getTotalCost(),
+      price: formatCurrency(this.price),
+      total_amount: formatCurrency(this.total_amount),
+      fees: formatCurrency(this.fees),
+      total_cost: formatCurrency(this.getTotalCost()),
       notes: this.notes,
       status: this.status,
       date: this.created_at

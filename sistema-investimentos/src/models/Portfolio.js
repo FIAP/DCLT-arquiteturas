@@ -41,6 +41,8 @@
  *           format: date-time
  */
 
+const { formatCurrency } = require('../../format');
+
 module.exports = (sequelize, DataTypes) => {
   const Portfolio = sequelize.define('portfolios', {
     id: {
@@ -228,6 +230,20 @@ module.exports = (sequelize, DataTypes) => {
       ],
       limit
     });
+  };
+
+  Portfolio.prototype.getFormattedData = function() {
+    return {
+      id: this.id,
+      user_id: this.user_id,
+      total_invested: formatCurrency(this.total_invested),
+      current_value: formatCurrency(this.current_value),
+      profit_loss: formatCurrency(this.profit_loss),
+      profit_loss_percentage: parseFloat(this.profit_loss_percentage),
+      total_dividends: formatCurrency(this.total_dividends),
+      created_at: this.created_at,
+      updated_at: this.updated_at
+    };
   };
 
   // Métodos de classe

@@ -95,6 +95,9 @@ app.set('views', path.join(__dirname, 'views'));
 // Arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Servir a raiz do projeto como estática para expor format.js ao frontend
+app.use('/js', express.static(path.resolve(__dirname, '..')));
+
 // Inicializar banco de dados
 const db = require('./models');
 
