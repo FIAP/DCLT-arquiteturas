@@ -149,6 +149,19 @@ router.get('/', [
   });
 }));
 
+// ROTA DE SIMULAÇÃO DE FALHAS (para demo)
+router.get('/simulacao-erro-tratado', (req, res, next) => {
+  next(new Error('Erro proposital tratado na rota de ativos!'));
+});
+
+router.get('/simulacao-erro-nao-tratado', (req, res) => {
+  throw new Error('Erro não tratado! Isso pode derrubar o servidor se não for capturado.');
+});
+
+router.get('/simulacao-crash', (req, res) => {
+  process.exit(1);
+});
+
 /**
  * @swagger
  * /api/v1/assets/{id}:
