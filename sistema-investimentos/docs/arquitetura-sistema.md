@@ -1,10 +1,10 @@
-# 🏗️ Arquitetura do Sistema de Investimentos
+# Arquitetura do Sistema de Investimentos
 
-## 📋 Visão Geral
+## Visão Geral
 
 O **Sistema de Investimentos** é uma aplicação **monolítica completa** desenvolvida em **Node.js** que integra frontend e backend em uma única aplicação. O sistema simula uma plataforma de investimentos educacional com interface web moderna, permitindo que usuários gerenciem suas carteiras de investimento através de uma interface visual intuitiva ou através da API REST.
 
-## 🎯 Objetivos Educacionais
+## Objetivos Educacionais
 
 Este projeto foi desenvolvido como material didático para demonstrar:
 
@@ -19,81 +19,81 @@ Este projeto foi desenvolvido como material didático para demonstrar:
 - **Transações ACID**: Operações financeiras seguras
 - **UX/UI Moderna**: Interface amigável com gráficos e dashboards
 
-## 🏛️ Arquitetura de Alto Nível
+## Arquitetura de Alto Nível
 
 ```mermaid
 graph TB
     subgraph "Cliente"
-        BROWSER[🌐 Navegador Web]
-        MOBILE[📱 App Mobile]
-        API_CLIENT[🔧 Cliente API]
+        BROWSER[Navegador Web]
+        MOBILE[App Mobile]
+        API_CLIENT[Cliente API]
     end
     
     subgraph "Monólito - Aplicação Node.js"
-        APP[🚀 Express Server]
+        APP[Express Server]
         
         subgraph "Frontend - Views"
-            LAYOUTS[📄 Layouts EJS]
-            PAGES[📄 Páginas]
-            STATIC[📁 Assets Estáticos]
+            LAYOUTS[Layouts EJS]
+            PAGES[Páginas]
+            STATIC[Assets Estáticos]
             subgraph "Páginas HTML"
-                HOME[🏠 Home]
-                LOGIN[🔐 Login]
-                REGISTER[📝 Cadastro]
-                DASHBOARD[📊 Dashboard]
-                ASSETS[💰 Ativos]
-                PORTFOLIO[💼 Portfólio]
-                TRANSACTIONS[💸 Transações]
-                PROFILE[👤 Perfil]
+                HOME[Home]
+                LOGIN[Login]
+                REGISTER[Cadastro]
+                DASHBOARD[Dashboard]
+                ASSETS[Ativos]
+                PORTFOLIO[Portfólio]
+                TRANSACTIONS[Transações]
+                PROFILE[Perfil]
             end
         end
         
         subgraph "Backend - API"
             subgraph "Middleware"
-                AUTH[🔐 Autenticação JWT]
-                OPTIONAL_AUTH[🔓 Auth Opcional]
-                VALID[✅ Validação]
-                RATE[⏱️ Rate Limiting]
-                ERROR[❌ Error Handler]
+                AUTH[Autenticação JWT]
+                OPTIONAL_AUTH[Auth Opcional]
+                VALID[Validação]
+                RATE[Rate Limiting]
+                ERROR[Error Handler]
             end
             
             subgraph "Rotas"
-                PAGE_R[📄 Page Routes]
-                AUTH_R[🔑 Auth Routes]
-                USER_R[👤 User Routes]
-                ASSET_R[📈 Asset Routes]
-                PORT_R[💼 Portfolio Routes]
-                TRANS_R[💰 Transaction Routes]
+                PAGE_R[Page Routes]
+                AUTH_R[Auth Routes]
+                USER_R[User Routes]
+                ASSET_R[Asset Routes]
+                PORT_R[Portfolio Routes]
+                TRANS_R[Transaction Routes]
             end
             
             subgraph "Modelos"
-                USER_M[👤 User Model]
-                ASSET_M[📊 Asset Model]
-                PORT_M[💼 Portfolio Model]
-                TRANS_M[💸 Transaction Model]
-                PA_M[🔗 PortfolioAsset Model]
+                USER_M[User Model]
+                ASSET_M[Asset Model]
+                PORT_M[Portfolio Model]
+                TRANS_M[Transaction Model]
+                PA_M[PortfolioAsset Model]
             end
             
             subgraph "Banco de Dados"
-                ORM[🗃️ Sequelize ORM]
+                ORM[Sequelize ORM]
             end
         end
         
         subgraph "Documentação"
-            SWAGGER[📚 Swagger UI]
-            HEALTH[❤️ Health Check]
+            SWAGGER[Swagger UI]
+            HEALTH[Health Check]
         end
     end
     
     subgraph "Infraestrutura"
-        POSTGRES[(🐘 PostgreSQL)]
-        REDIS[(🔴 Redis Cache)]
-        DOCKER[🐳 Docker Containers]
+        POSTGRES[(PostgreSQL)]
+        REDIS[(Redis Cache)]
+        DOCKER[Docker Containers]
     end
     
     subgraph "Ferramentas de Desenvolvimento"
-        ADMINER[🔍 Adminer DB Admin]
-        LOGS[📝 Morgan Logs]
+        ADMINER[Adminer DB Admin]
+        LOGS[Morgan Logs]
     end
     
     BROWSER --> APP
@@ -153,68 +153,68 @@ graph TB
     APP --> LOGS
 ```
 
-## 🗂️ Estrutura de Diretórios
+## Estrutura de Diretórios
 
 ```
 sistema-investimentos/
-├── 📁 src/                          # Código fonte da aplicação
-│   ├── 📁 config/                   # Configurações
-│   │   └── 📄 database.js           # Configuração do Sequelize
-│   ├── 📁 controllers/              # Controladores (futuro)
-│   ├── 📁 middleware/               # Middlewares customizados
-│   │   ├── 📄 auth.js              # Autenticação JWT
-│   │   └── 📄 errorHandler.js      # Tratamento de erros
-│   ├── 📁 models/                   # Modelos do Sequelize
-│   │   ├── 📄 index.js             # Configuração dos modelos
-│   │   ├── 📄 User.js              # Modelo de usuário
-│   │   ├── 📄 Asset.js             # Modelo de ativo
-│   │   ├── 📄 Portfolio.js         # Modelo de portfólio
-│   │   ├── 📄 Transaction.js       # Modelo de transação
-│   │   └── 📄 PortfolioAsset.js    # Modelo de relacionamento
-│   ├── 📁 routes/                   # Rotas da aplicação
-│   │   ├── 📄 pageRoutes.js        # Rotas das páginas (frontend)
-│   │   ├── 📄 authRoutes.js        # Rotas de autenticação (API)
-│   │   ├── 📄 userRoutes.js        # Rotas de usuário (API)
-│   │   ├── 📄 assetRoutes.js       # Rotas de ativos (API)
-│   │   ├── 📄 portfolioRoutes.js   # Rotas de portfólio (API)
-│   │   └── 📄 transactionRoutes.js # Rotas de transações (API)
-│   ├── 📁 views/                    # Templates do frontend
-│   │   ├── 📁 layout/              # Layouts base
-│   │   │   └── 📄 base.ejs         # Layout principal com navbar/footer
-│   │   ├── 📁 pages/               # Páginas da aplicação
-│   │   │   ├── 📄 home.ejs         # Página inicial
-│   │   │   ├── 📄 login.ejs        # Página de login
-│   │   │   ├── 📄 register.ejs     # Página de cadastro
-│   │   │   ├── 📄 dashboard.ejs    # Dashboard principal
-│   │   │   ├── 📄 assets.ejs       # Catálogo de ativos
-│   │   │   ├── 📄 portfolio.ejs    # Portfólio do usuário
-│   │   │   ├── 📄 transactions.ejs # Histórico de transações
-│   │   │   └── 📄 profile.ejs      # Perfil do usuário
-│   │   └── 📄 error.ejs            # Página de erro 404
-│   ├── 📁 public/                   # Assets estáticos
-│   │   ├── 📁 css/                 # Estilos CSS
-│   │   │   └── 📄 app.css          # CSS personalizado da aplicação
-│   │   ├── 📁 js/                  # JavaScript frontend
-│   │   │   └── 📄 app.js           # JavaScript principal da aplicação
-│   │   └── 📁 images/              # Imagens e ícones
-│   ├── 📁 services/                 # Serviços de negócio (futuro)
-│   ├── 📁 utils/                    # Utilitários
-│   └── 📄 app.js                    # Arquivo principal da aplicação
-├── 📁 docs/                         # Documentação
-│   ├── 📄 arquitetura-sistema.md    # Este arquivo
-│   ├── 📄 diagramas-sequencia.md    # Diagramas de sequência
-│   ├── 📄 modelo-dados.md           # Modelo de dados
-│   └── 📄 guia-uso.md              # Guia de uso da API
-├── 📁 sql/                          # Scripts SQL
-│   └── 📄 init.sql                  # Dados iniciais
-├── 📄 docker-compose.yml            # Orquestração dos containers
-├── 📄 Dockerfile                    # Imagem da aplicação
-├── 📄 package.json                  # Dependências e scripts
-├── 📄 config.example                # Exemplo de configuração
-└── 📄 README.md                     # Documentação principal
+├── src/                          # Código fonte da aplicação
+│   ├── config/                   # Configurações
+│   │   └── database.js           # Configuração do Sequelize
+│   ├── controllers/              # Controladores (futuro)
+│   ├── middleware/               # Middlewares customizados
+│   │   ├── auth.js              # Autenticação JWT
+│   │   └── errorHandler.js      # Tratamento de erros
+│   ├── models/                   # Modelos do Sequelize
+│   │   ├── index.js             # Configuração dos modelos
+│   │   ├── User.js              # Modelo de usuário
+│   │   ├── Asset.js             # Modelo de ativo
+│   │   ├── Portfolio.js         # Modelo de portfólio
+│   │   ├── Transaction.js       # Modelo de transação
+│   │   └── PortfolioAsset.js    # Modelo de relacionamento
+│   ├── routes/                   # Rotas da aplicação
+│   │   ├── pageRoutes.js        # Rotas das páginas (frontend)
+│   │   ├── authRoutes.js        # Rotas de autenticação (API)
+│   │   ├── userRoutes.js        # Rotas de usuário (API)
+│   │   ├── assetRoutes.js       # Rotas de ativos (API)
+│   │   ├── portfolioRoutes.js   # Rotas de portfólio (API)
+│   │   └── transactionRoutes.js # Rotas de transações (API)
+│   ├── views/                    # Templates do frontend
+│   │   ├── layout/              # Layouts base
+│   │   │   └── base.ejs         # Layout principal com navbar/footer
+│   │   ├── pages/               # Páginas da aplicação
+│   │   │   ├── home.ejs         # Página inicial
+│   │   │   ├── login.ejs        # Página de login
+│   │   │   ├── register.ejs     # Página de cadastro
+│   │   │   ├── dashboard.ejs    # Dashboard principal
+│   │   │   ├── assets.ejs       # Catálogo de ativos
+│   │   │   ├── portfolio.ejs    # Portfólio do usuário
+│   │   │   ├── transactions.ejs # Histórico de transações
+│   │   │   └── profile.ejs      # Perfil do usuário
+│   │   └── error.ejs            # Página de erro 404
+│   ├── public/                   # Assets estáticos
+│   │   ├── css/                 # Estilos CSS
+│   │   │   └── app.css          # CSS personalizado da aplicação
+│   │   ├── js/                  # JavaScript frontend
+│   │   │   └── app.js           # JavaScript principal da aplicação
+│   │   └── images/              # Imagens e ícones
+│   ├── services/                 # Serviços de negócio (futuro)
+│   ├── utils/                    # Utilitários
+│   └── app.js                    # Arquivo principal da aplicação
+├── docs/                         # Documentação
+│   ├── arquitetura-sistema.md    # Este arquivo
+│   ├── diagramas-sequencia.md    # Diagramas de sequência
+│   ├── modelo-dados.md           # Modelo de dados
+│   └── guia-uso.md              # Guia de uso da API
+├── sql/                          # Scripts SQL
+│   └── init.sql                  # Dados iniciais
+├── docker-compose.yml            # Orquestração dos containers
+├── Dockerfile                    # Imagem da aplicação
+├── package.json                  # Dependências e scripts
+├── config.example                # Exemplo de configuração
+└── README.md                     # Documentação principal
 ```
 
-## 🔧 Componentes Principais
+## Componentes Principais
 
 ### 1. **Express Server** (`src/app.js`)
 - **Responsabilidade**: Servidor HTTP principal que serve tanto frontend quanto API
@@ -271,7 +271,7 @@ sistema-investimentos/
 - **Validação de entrada**: Express-validator para validação robusta
 - **Respostas estruturadas**: Formato consistente de retorno
 
-## 🎨 Frontend - Interface do Usuário
+## Frontend - Interface do Usuário
 
 ### Características da Interface
 
@@ -311,7 +311,7 @@ sistema-investimentos/
    - Formatação de valores monetários
    - Gráficos interativos
 
-## 🛡️ Segurança
+## Segurança
 
 ### Medidas Implementadas
 
@@ -338,7 +338,7 @@ sistema-investimentos/
    - Content Security Policy
    - Logs de auditoria
 
-## 📊 Banco de Dados
+## Banco de Dados
 
 ### PostgreSQL
 - **Escolha**: Banco relacional robusto e confiável
@@ -354,7 +354,7 @@ sistema-investimentos/
 - **Validações**: Validação a nível de modelo
 - **Relacionamentos**: Associações complexas entre entidades
 
-## 🐳 Containerização
+## Containerização
 
 ### Docker Compose
 ```yaml
@@ -370,7 +370,7 @@ services:
 - **Escalabilidade**: Fácil replicação de instâncias
 - **Desenvolvimento**: Setup rápido para novos desenvolvedores
 
-## 📈 Performance
+## Performance
 
 ### Otimizações Implementadas
 
@@ -392,7 +392,7 @@ services:
    - Validação em tempo real
    - Navegação fluida SPA-like
 
-## 🔄 Fluxos Principais
+## Fluxos Principais
 
 ### 1. Acesso ao Sistema
 ```
@@ -414,7 +414,7 @@ Usuário → Assets Page → Selecionar Ativo → Modal → Confirmar → API Ca
 Dashboard → Carregar Dados → Renderizar Gráficos → Atualizar Widgets → Cache Local
 ```
 
-## 🚀 Deploy e Produção
+## Deploy e Produção
 
 ### Considerações para Produção
 
@@ -438,7 +438,7 @@ Dashboard → Carregar Dados → Renderizar Gráficos → Atualizar Widgets → 
    - CSP headers
    - Validação de input
 
-## 📚 Recursos Educacionais
+## Recursos Educacionais
 
 Este projeto demonstra conceitos importantes de:
 
@@ -452,7 +452,7 @@ Este projeto demonstra conceitos importantes de:
 - **Segurança Web**: Autenticação e proteção
 - **DevOps**: Containerização e deploy
 
-## 🔮 Futuras Evoluções
+## Futuras Evoluções
 
 ### Frontend
 - Migração para SPA (React/Vue)
@@ -470,4 +470,4 @@ Este projeto demonstra conceitos importantes de:
 - APIs externas de cotações
 - Gateways de pagamento
 - Analytics avançado
-- Machine learning 
+- Machine learning

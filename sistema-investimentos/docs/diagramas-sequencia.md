@@ -1,12 +1,12 @@
-# 🔄 Diagramas de Sequência - Sistema de Investimentos
+# Diagramas de Sequência - Sistema de Investimentos
 
-## 📋 Visão Geral
+## Visão Geral
 
 Este documento apresenta os diagramas de sequência dos principais fluxos do **Sistema de Investimentos**, demonstrando a interação entre frontend, backend e banco de dados em uma aplicação monolítica completa.
 
 ---
 
-## 1. 🌐 Fluxo de Interface Web - Acesso ao Sistema
+## 1. Fluxo de Interface Web - Acesso ao Sistema
 
 ### 1.1 Acesso à Página Inicial
 
@@ -81,7 +81,7 @@ sequenceDiagram
 
 ---
 
-## 2. 📊 Fluxo de Dashboard - Carregamento de Dados
+## 2. Fluxo de Dashboard - Carregamento de Dados
 
 ```mermaid
 sequenceDiagram
@@ -125,7 +125,7 @@ sequenceDiagram
 
 ---
 
-## 3. 💰 Fluxo de Investimento - Interface Completa
+## 3. Fluxo de Investimento - Interface Completa
 
 ### 3.1 Navegação para Catálogo de Ativos
 
@@ -201,7 +201,7 @@ sequenceDiagram
 
 ---
 
-## 4. 📈 Fluxo de Portfólio - Visualização Interativa
+## 4. Fluxo de Portfólio - Visualização Interativa
 
 ```mermaid
 sequenceDiagram
@@ -254,7 +254,7 @@ sequenceDiagram
 
 ---
 
-## 5. 📊 Fluxo de Transações - Histórico e Nova Transação
+## 5. Fluxo de Transações - Histórico e Nova Transação
 
 ### 5.1 Visualização do Histórico
 
@@ -334,7 +334,7 @@ sequenceDiagram
 
 ---
 
-## 6. 👤 Fluxo de Perfil - Configurações do Usuário
+## 6. Fluxo de Perfil - Configurações do Usuário
 
 ```mermaid
 sequenceDiagram
@@ -389,7 +389,7 @@ sequenceDiagram
 
 ---
 
-## 7. 🔐 Fluxo de Autenticação Integrada
+## 7. Fluxo de Autenticação Integrada
 
 ### 7.1 Verificação Automática de Token
 
@@ -457,7 +457,7 @@ sequenceDiagram
 
 ---
 
-## 8. 📱 Responsividade e UX
+## 8. Responsividade e UX
 
 ### 8.1 Carregamento Progressivo
 
@@ -494,9 +494,9 @@ sequenceDiagram
 
 ---
 
-## 🎯 Benefícios da Arquitetura Monolítica Integrada
+## Benefícios da Arquitetura Monolítica Integrada
 
-### ✅ Vantagens Demonstradas
+### Vantagens Demonstradas
 
 1. **Desenvolvimento Simplificado**: Um único codebase para frontend e backend
 2. **Deploys Atômicos**: Frontend e backend sempre sincronizados
@@ -505,11 +505,11 @@ sequenceDiagram
 5. **Debugging Facilitado**: Stack trace completo em um só lugar
 6. **SSR Built-in**: Server-side rendering nativo com EJS
 
-### 🔄 Fluxos Otimizados
+### Fluxos Otimizados
 
 - **Cache de Templates**: EJS compila templates uma vez
 - **Assets Estáticos**: Servidos diretamente pelo Express
 - **Autenticação Unificada**: JWT funciona tanto na API quanto nas páginas
 - **Error Handling**: Tratamento centralizado de erros frontend/backend
 
-Estes diagramas demonstram a robustez e a segurança do sistema, essenciais para uma aplicação financeira educacional completa. 
+Estes diagramas demonstram a robustez e a segurança do sistema, essenciais para uma aplicação financeira educacional completa.
