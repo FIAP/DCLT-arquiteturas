@@ -7,7 +7,6 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
 
 # Runtime data
 pids
@@ -22,23 +21,12 @@ coverage/
 # nyc test coverage
 .nyc_output
 
-# Grunt intermediate storage
-.grunt
-
-# Bower dependency directory
-bower_components
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons
-build/Release
+# Logs
+logs
+*.log
 
 # Dependency directories
-jspm_packages/
-
-# TypeScript cache
-*.tsbuildinfo
+node_modules/
 
 # Optional npm cache directory
 .npm
@@ -46,20 +34,83 @@ jspm_packages/
 # Optional eslint cache
 .eslintcache
 
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
 # Output of 'npm pack'
 *.tgz
 
 # Yarn Integrity file
 .yarn-integrity
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# rollup.js default build output
+dist/
+
+# Temporary folders
+tmp/
+temp/
+
+# Swap files
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Sistema Investimentos specific
+config/local.json
+config/production.json
+uploads/
+backups/
+data/
+scripts/temp/
+
+# Monolith legacy (if exists)
+src/uploads/
+src/public/uploads/
+
+# Documentation builds
+docs/build/
+docs/dist/
+
+# Scripts execution logs
+*.execution.log
+health-check.log
 
 # ===================================
 # Environment & Configuration
@@ -212,7 +263,6 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
 
 # Runtime logs
 pids/
